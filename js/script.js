@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
 
-     //модальное окно popup-gift
+    //модальное окно popup-gift
     fixedGift.addEventListener('click', (e) => {
         popupGift.style.display = 'block';
         fixedGift.style.display = 'none';
@@ -143,4 +143,23 @@ window.addEventListener('DOMContentLoaded', () => {
         });      
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Подгрузка дополнительных блоков
+
+    let styles = document.querySelector('.styles'),
+        stylesDivs = styles.querySelectorAll('div'),
+        buttonStyles = styles.querySelector('.button-styles');
+    
+        buttonStyles.addEventListener('click', () => {
+
+            stylesDivs.forEach( (item) => item.classList.remove('hidden-lg') );
+            stylesDivs.forEach( (item) => item.classList.remove('hidden-md') );
+            stylesDivs.forEach( (item) => item.classList.remove('hidden-sm') );
+            stylesDivs.forEach( (item) => item.classList.remove('hidden-xs') );
+            buttonStyles.style.display = 'none';
+
+        });
+
+    
+    
 });
