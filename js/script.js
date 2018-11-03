@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let animate = () => slideIndex <= 1 ? plusSlides(1) : plusSlides(-1); 
        
         setInterval(animate, 4000);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
     // Модальные окна 
 
     let buttonOrder = document.querySelectorAll('.button-design'),
@@ -30,13 +30,18 @@ window.addEventListener('DOMContentLoaded', () => {
         popupContentContent = document.querySelectorAll('.popup-content_content'),
         mm = document.querySelectorAll('.popup-dialog'),
 
-       
-      
-
+        //модальное окно popup-gift
+        popupGift = document.querySelector('.popup-gift'),
+        fixedGift = document.querySelector('.fixed-gift'),
+        
+        
         openModalOrder  = () => popupDesign.style.display = 'block',
+
+        //закрытие всех модальных окон
         closeModalOrder = () => { 
             popupDesign.style.display = 'none';
-            popupConsultation.style.display = 'none'; 
+            popupConsultation.style.display = 'none';
+            popupGift.style.display = 'none';
          } , 
 
         openModalConsultation = () => popupConsultation.style.display = 'block';
@@ -58,8 +63,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     buttonConsultation.forEach( (item) => item.addEventListener('click', () => openModalConsultation() ) );
 
-
-
     popupConsultation.addEventListener('click', (e) =>  {
 
         if (e.target.classList.contains('popup-consultation') ) {
@@ -68,10 +71,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
 
+     //модальное окно popup-gift
+    fixedGift.addEventListener('click', (e) => {
+        popupGift.style.display = 'block';
+        fixedGift.style.display = 'none';
+    });
+
+    popupGift.addEventListener('click', (e) =>  {
+
+        if (e.target.classList.contains('popup-gift') ) {
+            closeModalOrder(); 
+        }
+
+    });
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Отправка форм
 
-
-  
 
     let forms = document.querySelectorAll('form');
 
@@ -107,18 +127,18 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    let consultations = document.querySelector('.consultation'),
-    consultationsContainer = consultations.querySelector('.container');
+    // let consultations = document.querySelector('.consultation'),
+    // consultationsContainer = consultations.querySelector('.container');
     
-    let div = document.createElement('div');
-        div.innerHTML = '<img src="../img/radost_02.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
+    // let div = document.createElement('div');
+    //     div.innerHTML = '<img src="../img/radost_02.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
 
-        console.log(popupContent.length);
-            postData()
-                .then ( 
-                popupContentContent.forEach( (item) =>item.style.display = 'none'), 
-                popupContent.forEach( (item) => item.appendChild(div) )
-                 );
+    //     console.log(popupContent.length);
+    //         postData()
+    //             .then ( 
+    //             popupContentContent.forEach( (item) =>item.style.display = 'none'), 
+    //             popupContent.forEach( (item) => item.appendChild(div) )
+    //              );
     
         });      
     }
