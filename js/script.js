@@ -235,5 +235,57 @@ window.addEventListener('DOMContentLoaded', () => {
             } 
            
         });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// слайдер
+
+let portfolioMenu = document.querySelector('.portfolio-menu'),
+    tab = portfolioMenu.querySelectorAll('li'),
+    tabContent = document.querySelectorAll('.portfolio-block'),
+    portfolioNo = document.querySelector('.portfolio-no');
+
+
+    let showTabContent = (b) => {
+        
+            for (let i = 0; i < tabContent.length; i++) {
+                if (tabContent[i].classList.contains(b)) {
+                    tabContent[i].style.display = 'flex';
+                } else {
+                    tabContent[i].style.display = 'none';
+                }
+
+                if ( b == 'grandmother' || b == 'granddad' ) {
+                    portfolioNo.style.display = 'flex';
+                } else {
+                    portfolioNo.style.display = 'none';
+                }
+
+            }   
+
+            let target = event.target;
+            if (target && target.classList.contains(b)) {  
+                target.classList.add('active');
+
+                for(let i=0; i < tab.length; i++) {
+
+                     let k = tab[i].classList.contains(b) ;
+                     if(k == 0) {
+                        tab[i].classList.remove('active');
+                     }
+                }
+            }
+               
+            
+
+    };
+
+    tab[0].addEventListener('click', (event) => showTabContent('all') );
+    tab[1].addEventListener('click', (event) => showTabContent('lovers') );
+    tab[2].addEventListener('click', (event) => showTabContent('chef') );
+    tab[3].addEventListener('click', (event) => showTabContent('girl') );
+    tab[4].addEventListener('click', (event) => showTabContent('guy') );
+    tab[5].addEventListener('click', (event) => showTabContent('grandmother') );
+    tab[6].addEventListener('click', (event) => showTabContent('granddad') );
+    
     
 });
