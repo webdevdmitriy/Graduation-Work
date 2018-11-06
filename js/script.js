@@ -275,8 +275,6 @@ let portfolioMenu = document.querySelector('.portfolio-menu'),
                 }
             }
                
-            
-
     };
 
     tab[0].addEventListener('click', (event) => showTabContent('all') );
@@ -286,6 +284,52 @@ let portfolioMenu = document.querySelector('.portfolio-menu'),
     tab[4].addEventListener('click', (event) => showTabContent('guy') );
     tab[5].addEventListener('click', (event) => showTabContent('grandmother') );
     tab[6].addEventListener('click', (event) => showTabContent('granddad') );
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//картинки при наведении
+
     
+   let sizes = document.querySelector('.sizes-wrapper'),
+       sizesBlock = document.querySelectorAll('.sizes'),
+       imgColor = sizes.querySelectorAll('.color'),
+       imgPlug = sizes.querySelectorAll('.plug');
+
+        imgColor.forEach ( (item) => {
+            item.style.display='none';
+            item.style.position='relative';
+            item.style.zIndex='10';
+
+         } );
+
+       sizes.addEventListener('mouseover', (event) => {
+        
+        let target = event.target;
+        console.log(target);
+        if (target && target.hasAttribute('src')) {
+            for( let i = 0; i <  imgPlug.length; i ++) {
+                if (target ==  imgPlug[i]) {
+                    imgPlug[i].style.display = 'none';
+                    imgColor[i].style.display = 'block';
+                        
+                }
+            }
+            
+        }
+    });
+
+    sizes.addEventListener('mouseout', (event) => {  
+        let target = event.target;
+        if (target && target.hasAttribute('src')) {
+            for( let i = 0; i <  imgColor.length; i ++) {
+                if (target ==  imgColor[i]) {
+                    imgPlug[i].style.display = 'block';
+                    imgColor[i].style.display = 'none';
+                        
+                }
+            }
+            
+        }
+    });
+
     
 });
