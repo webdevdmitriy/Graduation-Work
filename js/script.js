@@ -21,7 +21,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     let buttonOrder = document.querySelectorAll('.button-design'),
         popupDesign = document.querySelector('.popup-design'),
-        // popupContent= popupDesign.querySelector('.popup-dialog'),
         mainForm= popupDesign.querySelector('form'),
         popupClose = document.querySelectorAll('.popup-close'),
         buttonConsultation = document.querySelectorAll('.button-consultation'),
@@ -29,7 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
         formConsultation= popupConsultation.querySelector('form'),
         popupContentDesign = popupDesign.querySelector('.popup-content'),
         popupContentConsultation = popupConsultation.querySelector('.popup-content'),
-        popupContentContent = document.querySelectorAll('.popup-content_content'),
+        popupDesignContentContent = popupDesign.querySelector('.popup-content_content'),
+        popupConsultationContentContent = popupConsultation.querySelector('.popup-content_content'),
 
         //модальное окно popup-gift
         popupGift = document.querySelector('.popup-gift'),
@@ -94,12 +94,16 @@ window.addEventListener('DOMContentLoaded', () => {
     //Отправка форм
 
 
-    let forms = document.querySelectorAll('form');
+    // let forms = document.querySelectorAll('form');
 
-    for(let i=0; i < forms.length; i++) {
+    let div = document.createElement('div');
+    div.innerHTML = '<img src="../img/1.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
 
-        forms[i].addEventListener('submit', function(event) {
+
+        mainForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
+       
 
     function postData() {
         return new Promise( (resolve, reject) => {
@@ -108,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
             request.open('POST', 'server.php');
             request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 
-            let formData = new FormData(forms[i]);
+            let formData = new FormData(mainForm);
 
             let obj = {};
             formData.forEach(function(value, key) {
@@ -131,21 +135,127 @@ window.addEventListener('DOMContentLoaded', () => {
     let consultations = document.querySelector('.consultation'),
     consultationsContainer = consultations.querySelector('.container');
     
-    let div = document.createElement('div');
-        div.innerHTML = '<img src="../img/radost_02.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
-
             postData()
-                .then( () => {})
-                .then ( () => {
-                    popupContentContent.forEach( (item) =>item.style.display = 'none');
+                .then( () => {
+                    div.innerHTML = 'Идет отправка';
                     popupContentDesign.appendChild(div);
-                    popupContentConsultation.appendChild(div);
-                }
-                
-                 );
+                })
+                .then ( () => {
+                    popupDesignContentContent.style.display = 'none';
+                    div.innerHTML = '<img src="../img/1.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
+                    popupContentDesign.appendChild(div);
+                })
+                .catch( () => {
+                    popupDesignContentContent.style.display = 'none';
+                    div.innerHTML = '<img src="../img/tenor.gif">'+'</br>'+'что то пошло не так....';
+                    popupContentDesign.appendChild(div);
+
+                } );
     
-        });      
-    }
+        }); 
+/////////////////////////////////////////////////////////////////
+
+    formConsultation.addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+        function postData() {
+            return new Promise( (resolve, reject) => {
+    
+                let request = new XMLHttpRequest();
+                request.open('POST', 'server.php');
+                request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    
+                let formData = new FormData(formConsultation);
+    
+                let obj = {};
+                formData.forEach(function(value, key) {
+                    obj[key] = value;
+                });
+                let json = JSON.stringify(obj);
+                request.send(json);
+    
+                request.addEventListener('readystatechange', function() {
+                    if (request.redyState < 4) {
+                        resolve();
+                    } else if (request.readyState === 4 && request.status == 200) {
+                       resolve();
+                    } else {
+                        reject();
+                    }
+                });
+            });
+        }
+        
+                postData()
+                    .then( () => {
+                        div.innerHTML = 'Идет отправка';
+                        popupContentConsultation.appendChild(div);
+                    })
+                    .then ( () => {
+                        popupConsultationContentContent.style.display = 'none';
+                        div.innerHTML = '<img src="../img/1.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
+                        popupContentConsultation.appendChild(div);
+                    } )
+                    .catch( () => {
+                    popupConsultationContentContent.style.display = 'none';
+                    div.innerHTML = '<img src="../img/tenor.gif">'+'</br>'+'что то пошло не так....';
+                    popupContentConsultation.appendChild(div);
+
+                } );
+        
+            });      
+        
+    ///////// регулрки
+            let phones = document.querySelectorAll('input[name="phone"]');
+            let names = document.querySelectorAll('input[name="name"]');
+            let messages = document.querySelectorAll('input[name="message"]');
+
+            phones.forEach( function(item) {
+
+                item.addEventListener('input', function() {
+                    let matrix = "+7 (___) ___ ____",
+                    i = 0,
+                    def = matrix.replace(/\D/g, ''),
+                    val = this.value.replace(/\D/g, '');
+        
+                    if (def.length >= val.length) val = def;
+                    
+                    this.value = matrix.replace(/./g, function(a) {
+                        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+                    });
+    
+                });
+
+            });
+
+            names.forEach ( function(item) {
+
+                item.addEventListener('input', function() {
+                this.value = this.value.replace(/[^аА-яё]/g, '');
+                
+                }) ;
+
+            }) ;
+
+            messages.forEach ( function(item) {
+
+                item.addEventListener('input', function() {
+                this.value = this.value.replace(/[^аА-яё]/g, '');
+
+                }) ;
+
+            }) ;
+
+            
+
+           
+            
+
+            
+      
+
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
     //Подгрузка дополнительных блоков
