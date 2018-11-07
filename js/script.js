@@ -22,13 +22,14 @@ window.addEventListener('DOMContentLoaded', () => {
     let buttonOrder = document.querySelectorAll('.button-design'),
         popupDesign = document.querySelector('.popup-design'),
         // popupContent= popupDesign.querySelector('.popup-dialog'),
-        mainForm= popupDesign.querySelector('.form'),
+        mainForm= popupDesign.querySelector('form'),
         popupClose = document.querySelectorAll('.popup-close'),
         buttonConsultation = document.querySelectorAll('.button-consultation'),
-        popupConsultation = document.querySelector('.popup-consultation'),
-        popupContent = document.querySelectorAll('.popup-content'),
+        popupConsultation= document.querySelector('.popup-consultation'),
+        formConsultation= popupConsultation.querySelector('form'),
+        popupContentDesign = popupDesign.querySelector('.popup-content'),
+        popupContentConsultation = popupConsultation.querySelector('.popup-content'),
         popupContentContent = document.querySelectorAll('.popup-content_content'),
-        mm = document.querySelectorAll('.popup-dialog'),
 
         //модальное окно popup-gift
         popupGift = document.querySelector('.popup-gift'),
@@ -127,18 +128,21 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // let consultations = document.querySelector('.consultation'),
-    // consultationsContainer = consultations.querySelector('.container');
+    let consultations = document.querySelector('.consultation'),
+    consultationsContainer = consultations.querySelector('.container');
     
-    // let div = document.createElement('div');
-    //     div.innerHTML = '<img src="../img/radost_02.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
+    let div = document.createElement('div');
+        div.innerHTML = '<img src="../img/radost_02.gif">'+'</br>'+'Спасибо, мы скоро с вами свяжемся';
 
-    //     console.log(popupContent.length);
-    //         postData()
-    //             .then ( 
-    //             popupContentContent.forEach( (item) =>item.style.display = 'none'), 
-    //             popupContent.forEach( (item) => item.appendChild(div) )
-    //              );
+            postData()
+                .then( () => {})
+                .then ( () => {
+                    popupContentContent.forEach( (item) =>item.style.display = 'none');
+                    popupContentDesign.appendChild(div);
+                    popupContentConsultation.appendChild(div);
+                }
+                
+                 );
     
         });      
     }
@@ -147,15 +151,11 @@ window.addEventListener('DOMContentLoaded', () => {
     //Подгрузка дополнительных блоков
 
     let styles = document.querySelector('.styles'),
-        stylesDivs = styles.querySelectorAll('div'),
+        stylesDivs = styles.querySelectorAll('.hidden-lg'),
         buttonStyles = styles.querySelector('.button-styles');
     
         buttonStyles.addEventListener('click', () => {
-
-            stylesDivs.forEach( (item) => item.classList.remove('hidden-lg') );
-            stylesDivs.forEach( (item) => item.classList.remove('hidden-md') );
-            stylesDivs.forEach( (item) => item.classList.remove('hidden-sm') );
-            stylesDivs.forEach( (item) => item.classList.remove('hidden-xs') );
+            stylesDivs.forEach( (item) => item.className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1' );
             buttonStyles.style.display = 'none';
 
         });
