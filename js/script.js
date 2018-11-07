@@ -523,6 +523,44 @@ let message = {
 
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// модальное окно при пролистывании
+
+    let popupGift2 = document.querySelector('.popup-gift'),
+        fixedGift2 = document.querySelector('.fixed-gift'),
+        scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight,document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight ),
+        pressingOfButton = false;
+
+        let popupGiftScroll = () => {
+            let scroll = document.documentElement.scrollTop + document.documentElement.clientHeight - 1215 ;
+            if (scroll >= scrollHeight && pressingOfButton == false) {
+                popupGift2.style.display = 'block';
+                fixedGift2.style.display = 'none';
+                pressingOfButton = true;
+    
+            }
+        
+
+        };
+
+        document.querySelector('body').addEventListener('click', (event) =>   {
+            let target = event.target;
+            if (target.classList.contains('fixed-gift') || target.classList.contains('button')) { 
+                pressingOfButton = true; }
+
+        });
+
+        window.addEventListener('scroll', () => {
+            popupGiftScroll();
+
+        });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        
+        
 
     
 
