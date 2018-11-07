@@ -528,7 +528,6 @@ let message = {
 
     let popupGift2 = document.querySelector('.popup-gift'),
         fixedGift2 = document.querySelector('.fixed-gift'),
-        scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight,document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight ),
         pressingOfButton = false;
 
          let showpopupGift2 = () => {
@@ -538,14 +537,10 @@ let message = {
          };
 
         let popupGiftScroll = () => {
-            let scroll = document.documentElement.scrollTop + document.documentElement.clientHeight - 1215 ;
-            if (scroll >= scrollHeight && pressingOfButton == false) {
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight && pressingOfButton == false) {
                 showpopupGift2();
-            }
+             } };
         
-
-        };
-
         document.querySelector('body').addEventListener('click', (event) =>   {
             let target = event.target;
             if (target.classList.contains('fixed-gift') || target.classList.contains('button')) { 
@@ -555,16 +550,21 @@ let message = {
 
         window.addEventListener('scroll', () => {
             popupGiftScroll();
-
         });
 
+       
 //Модальное окно при посещении сайта более 60 секунд
 
     let popupConsultation2 = document.querySelector('.popup-consultation');
+
+     let showPopupConsultation2 = () => {
+        popupConsultation2.style.display = 'block';
+
+     };
         
     let timerPopupConsultation2 = () => {
         if (pressingOfButton == false) {
-            showpopupGift2();
+            showPopupConsultation2();
         } 
     };
 
