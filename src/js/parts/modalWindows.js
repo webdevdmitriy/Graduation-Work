@@ -157,7 +157,7 @@ export default function modalWindows () {
                 request.send(json);
     
                 request.addEventListener('readystatechange', function() {
-                    if (request.redyState < 4) {
+                    if (request.readyState < 4) {
                         resolve();
                     } else if (request.readyState === 4 && request.status == 200) {
                        resolve();
@@ -191,6 +191,7 @@ export default function modalWindows () {
             let phones = document.querySelectorAll('input[name="phone"]');
             let names = document.querySelectorAll('input[name="name"]');
             let messages = document.querySelectorAll('input[name="message"]');
+            let textarea = document.querySelectorAll('textarea[name="message"]');
 
             phones.forEach( function(item) {
 
@@ -220,6 +221,15 @@ export default function modalWindows () {
             }) ;
 
             messages.forEach ( function(item) {
+
+                item.addEventListener('input', function() {
+                this.value = this.value.replace(/[^аА-яё]/g, '');
+
+                }) ;
+
+            }) ;
+
+            textarea.forEach ( function(item) {
 
                 item.addEventListener('input', function() {
                 this.value = this.value.replace(/[^аА-яё]/g, '');

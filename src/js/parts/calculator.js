@@ -27,7 +27,7 @@ export default function calculator () {
             total = meterialSum + sizeSum + optionsSum;
 
             if (promocode.value == "IWANTPOPART") {
-                total = (total * 0.7)  ;
+                total = (total * 0.7).toFixed() ;
             }
 
             if (sizePrice[sizePrice.selectedIndex].value == 'Выберите размер картины' || materialPrice[materialPrice.selectedIndex].value == 'Выберите материал картины'  ) {
