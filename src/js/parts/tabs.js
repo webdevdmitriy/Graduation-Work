@@ -25,7 +25,7 @@ let portfolioMenu = document.querySelector('.portfolio-menu'),
                 tabContent[i].style.display = 'none';
             }
 
-            if ( target.classList.contains ('grandmother') || target.classList.contains ('grandad') ) {
+            if ( target.classList.contains ('grandmother') || target.classList.contains ('granddad') ) {
                 portfolioNo.style.display = 'flex';
             } else {
                 portfolioNo.style.display = 'none';

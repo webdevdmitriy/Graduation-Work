@@ -42,7 +42,7 @@
 /*!******************************!*\
   !*** ./src/js/parts/tabs.js ***!
   \******************************/
-/*! exports provided: default */function(e,t,n){"use strict";function r(){let e=document.querySelector(".portfolio-menu"),t=e.querySelectorAll("li"),n=document.querySelectorAll(".portfolio-block"),r=document.querySelector(".portfolio-no");e.addEventListener("click",()=>{let e=event.target;if("LI"==e.tagName)for(let e=0;e<t.length;e++)t[e].classList.remove("active");e.classList.add("active");for(let t=0;t<n.length;t++)n[t].classList.contains(e.classList[0])?n[t].style.display="flex":n[t].style.display="none",e.classList.contains("grandmother")||e.classList.contains("grandad")?r.style.display="flex":r.style.display="none"})}n.r(t),n.d(t,"default",function(){return r})},"./src/js/script.js":
+/*! exports provided: default */function(e,t,n){"use strict";function r(){let e=document.querySelector(".portfolio-menu"),t=e.querySelectorAll("li"),n=document.querySelectorAll(".portfolio-block"),r=document.querySelector(".portfolio-no");e.addEventListener("click",()=>{let e=event.target;if("LI"==e.tagName)for(let e=0;e<t.length;e++)t[e].classList.remove("active");e.classList.add("active");for(let t=0;t<n.length;t++)n[t].classList.contains(e.classList[0])?n[t].style.display="flex":n[t].style.display="none",e.classList.contains("grandmother")||e.classList.contains("granddad")?r.style.display="flex":r.style.display="none"})}n.r(t),n.d(t,"default",function(){return r})},"./src/js/script.js":
 /*!**************************!*\
   !*** ./src/js/script.js ***!
   \**************************/
